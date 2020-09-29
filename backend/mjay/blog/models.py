@@ -40,5 +40,5 @@ class Blog(models.Model):
     def __str__(self):
         return '%s' % self.title
 
-    def get_absolute_url(self):
-        return reverse("post-detail", kwargs={"slug": self.slug, })
+    def get_img_url(self, obj):
+        return self.context['request'].build_absolute_uri(obj.coverImg.url)

@@ -13,8 +13,11 @@ export class blog extends Component {
     }
 
     componentDidMount(){
-        axios.get('http://127.0.0.1:8000/api/blogs')
+        const url = window.location.href.split("/").pop();
+        console.log('url', url)
+        axios.get('http://127.0.0.1:8000/blog/category/?slug='+url)
             .then( res=>{
+                console.log('res.data', res.data)
                 this.setState({
                     blogs:      res.data
                 })
@@ -26,7 +29,10 @@ export class blog extends Component {
         return (
             <>
                 <BlogBanner blogs={this.state.blogs}/>
-                <BlogList blogs = {this.state.blogs} heading="Interesting Reads"/>
+                <div className="container my-5">
+                    <h2 className="heading">Interesting Reads</h2>
+                    <BlogList blogs = {this.state.blogs}/>
+                </div>
                 <Parallax/>
             </>
         )

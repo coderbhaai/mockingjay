@@ -6,7 +6,7 @@ class register extends Component {
     constructor(props) {
         super(props)    
         this.state = {
-            name:                       'amit7',
+            name:                       'amit1',
             email:                      'a@a.com',
             role:                       'user',
             password:                   '123456789',
@@ -39,19 +39,20 @@ class register extends Component {
                 role:                       this.state.role,
                 password:                   this.state.password
             }
-            axios.post('http://127.0.0.1:8000/api/register/', data)
+            axios.post('http://127.0.0.1:8000/user/register/', data)
             .then( res=>{
+                console.log('res.data', res.data)
                 if(res.data){
                     localStorage.setItem('user', JSON.stringify(res.data))
-                    localStorage.setItem( 'message', "Regsitration Succesful" )
+                    localStorage.setItem( 'message', "Regsitration Succesful. Welcome !!!" )
                     window.location.href = '/'
-                    this.callSwal("Regsitration Succesful")
+                    this.callSwal("Regsitration Succesful. Welcome !!!")
                 }
             })
             .catch(err=>{
-                console.log('err.response.data', err.response.data)
-                if(err.response.data.email){ this.callSwal(err.response.data.email) }
-                if(err.response.data.username){ this.callSwal(err.response.data.username) }
+                console.log('err', err)
+                // if(err.response.data.email){ this.callSwal(err.response.data.email) }
+                // if(err.response.data.username){ this.callSwal(err.response.data.username) }
             })
         }
     }

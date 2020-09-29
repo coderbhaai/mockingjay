@@ -14,6 +14,7 @@ export class index extends Component {
     componentDidMount(){
         axios.get('http://127.0.0.1:8000/blog/suggest_blogs')
             .then( res=>{
+                console.log('res.data', res.data)
                 this.setState({
                     blogs:      res.data
                 })

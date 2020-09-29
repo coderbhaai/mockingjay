@@ -19,7 +19,7 @@ export class blog extends Component {
 
     componentDidMount(){
         const url = window.location.href.split("/").pop();
-        axios.get('http://127.0.0.1:8000/api/blog/?slug='+url)
+        axios.get('http://127.0.0.1:8000/blog/single/?slug='+url) 
             .then( res=>{
                 console.log('res.data', res.data)
                 this.setState({

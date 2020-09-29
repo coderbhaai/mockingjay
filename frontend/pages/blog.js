@@ -26,7 +26,7 @@ export class blog extends Component {
     render() {
         return (
             <>
-                <BlogBanner blogs={this.state.blogs}/>
+                <BlogBanner blogs={this.state.blogs.slice(0,3)}/>
                 <div className="container my-5">
                     <h2 className="heading">Interesting Reads</h2>
                     <BlogList blogs = {this.state.blogs} heading="Interesting Reads"/>

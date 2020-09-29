@@ -10,7 +10,8 @@ export class Layout extends Component {
             <>
                 <Head>
                     <title>BitzPrice</title>
-                    <link href="/static/css/style.css" rel="stylesheet" key="style"/>
+                    <link href="/static/css/font-awesome.css" rel="stylesheet" key="font-CSS"/>
+                    <link href="/static/css/style.css" rel="stylesheet" key="style-CSS"/>
                 </Head>
                 <Header/>
                 {children}

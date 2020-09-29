@@ -1,34 +1,40 @@
 import React from 'react'
+import Swiper from 'react-id-swiper'
 
 function BlogBanner(props) {
-    return (
-        <div id="carouselExampleFade" className="carousel slide carousel-fade" data-ride="carousel" data-interval="50000" >
-            <div className="carousel-inner blogBanner">
-                {props.blogs.slice(0, 1).map((i)=>{
-                    return(
-                        <div className="carousel-item active" key={i.id}>
+    const params = {
+        fadeEffect: { crossFade: true },
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: true,
+        },
+        slidersPerView: 1,
+        effect: "fade",
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        loop: true,
+        grabCursor: true,
+        observer: true, 
+        observeParents: true
+    }
+    if(props.blogs.length){
+        return (
+            <div className="banner">
+                <Swiper {...params}>
+                    {props.blogs.map((i, index)=>(
+                        <div key={index}>
                             <img src={i.coverImg}/>
                             <div className="carousel-caption">
-                                <a href={"/blog/" + i.slug}><h2>{i.title}</h2></a>
+                                <h2><a href={"/blog/" + i.slug}>{i.title}</a></h2>
                                 <a href={"/blog/" + i.slug} className="amitBtn">Read More</a>
                             </div>
                         </div>
-                    )})}
-                {props.blogs.slice(1, 3).map((i)=>{
-                    return(
-                        <div className="carousel-item" key={i.id}>
-                            <img src={i.coverImg}/>
-                            <div className="carousel-caption">
-                                <a href={"/blog/" + i.slug}><h2>{i.title}</h2></a>
-                                <a href={"/blog/" + i.slug} className="amitBtn">Read More</a>
-                            </div>
-                        </div>
-                    )})}
+                    ))}
+                </Swiper>
             </div>
-            <a className="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev"><span className="carousel-control-prev-icon" aria-hidden="true"></span></a>
-            <a className="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next"><span className="carousel-control-next-icon" aria-hidden="true"></span></a>
-        </div>
-    )
+        )
+    }else{
+        return null
+    }
 }
 
 export default BlogBanner
